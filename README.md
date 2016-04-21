@@ -1,20 +1,7 @@
-# Express-Stormpath Example Project
-A simple Express.js web application to demonstrate core Stormpath functionality.
+# Stormpath Blog
 
-### Get Started!
+Created using the Express-Stormpath Example Project at https://github.com/stormpath/express-stormpath-sample-project.git
 
-1. Clone this repo to your computer, and cd into the project directory:
-
-  ```bash
-  git clone https://github.com/stormpath/express-stormpath-sample-project.git
-  cd express-stormpath-sample-project
-  ```
-
-2. Install the dependencies from package.json:
-
-  ```bash
-  npm install
-  ```
 
 3. Export your Stormpath API Key ID / Secret and Application HREF Environment Variables:
 

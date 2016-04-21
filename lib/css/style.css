@@ -1,0 +1,15 @@
+table {
+  text-align: center;
+}
+
+img {
+  float:left;
+}
+
+h3 {
+  float:right;
+}
+
+.panel-heading {
+  clear: both;
+}

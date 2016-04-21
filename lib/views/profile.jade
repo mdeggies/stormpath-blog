@@ -5,25 +5,49 @@ block vars
 
 block content
 
-  h2 My Profile
-
+  h2 Add a New Post
   hr
 
   div.panel.panel-default
     div.panel-heading.
-      Enter your profile information below, then click save to save your
-      changes.
+      Add New Post
     div.panel-body
       form.form-horizontal(method='post')
         div.form-group
-          label.control-label.col-sm-4 Favorite Color
+          label.control-label.col-sm-4 Title
           div.col-sm-4
-            input.form-control(type='text', name='favoriteColor', value=user.customData.favoriteColor)
-
+            input.form-control(type='text', name='title')
         div.form-group
-          label.control-label.col-sm-4 Birthday
+          label.control-label.col-sm-4 Content
           div.col-sm-4
-            input.form-control(type='text', name='birthday', value=user.customData.birthday)
+            textarea.form-control(type='text', name='content', rows='5')
+        div.form-group
+          label.control-label.col-sm-4 Tags
+          div.col-sm-4
+            input.form-control(type='text', data-role='tagsinput', <='', body='', name='tags')
         div.form-group
           div.col-sm-offset-4.col-sm-4
             button.btn.btn-default(type='submit') Save
+            
+  h2 My Posts
+  hr
+  
+  if blogPosts
+    - var posts = JSON.parse(blogPosts)
+    //- - console.log('posts[0]:',posts[0])
+    //- if (posts[0] != 'undefined')
+    table.table.table-bordered.table-hover
+      thead
+        tr
+          th
+          th Title
+          th Author
+          th Date
+      tbody
+        each post in posts
+          tr
+            td 
+              input(type="checkbox", name="agree")
+            td #{post.title}
+            th #{post.author}
+            td #{post.date}

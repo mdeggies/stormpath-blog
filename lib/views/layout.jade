@@ -8,9 +8,12 @@ html(lang='en')
       title=title ? (siteName + ' - ' + title) : siteName
     block css
       link(href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css', rel='stylesheet')
+      link(href='https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css', rel='stylesheet')
+      link(href='style.css', rel="stylesheet")
     block js
       script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
       script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+      script(src='https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js')
   body
     include navbar
     div.container

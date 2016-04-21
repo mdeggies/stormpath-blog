@@ -6,27 +6,34 @@ block vars
 block content
 
   if user
-
-    h2.text-center Welcome Back, #{user.givenName}
+    h2.text-center Check out the latest posts, #{user.givenName}!
 
   else
-
-    h2.text-center Welcome!
+    h2.text-center Welcome! Check out the latest posts
+    
   hr
+  
   div.jumbotron
-
-    p.
-      Ready to begin?  Try these Stormpath features provided automatically by Express-Stormpath:
-    ol.lead
-      if user
-        li Registration (Already logged in!)
-        li Login (Already logged in!)
-      else
-        li
-          a(href="/register") Registration
-        li
-          a(href="/login") Login
-      li
-        a(href="/forgot") Forgot Password
-      li
-        a(href="/profile") Custom Profile Data
+    img(src='http://i.imgur.com/OvuDSCN.jpg', width='500px')
+    Check out the best technical blog 
+  
+  if blogPosts
+    - var posts = JSON.parse(blogPosts)
+    each post in posts
+      .panel
+        .panel-heading
+          .text-center
+            .row
+              .col-sm-9
+                h3.pull-left #{post.title}
+              .col-sm-3
+                h4.pull-left
+                  small
+                    em
+                      | #{post.date}
+        .panel-body
+          | #{post.content}...
+          a(href='#') Read more
+        .panel-footer
+          - for (var i=0; i<post.tags.length; i++)
+            span.label.label-default #{post.tags[i]}
