@@ -1,0 +1,23 @@
+extends ./layout.jade
+
+block vars
+  - var title = 'Bloggers'
+
+block content
+
+  .spacing
+
+  h3(class='title') View all Bloggers
+    a(href='/bloggers/'+username) #{username}
+    hr
+    
+  .spacing
+  
+  if usersData
+    ul.list-group.bloggers-list
+    each numPosts, username in usersData
+      - var user = username
+      a(href='/bloggers/'+username)
+        li.list-group-item
+          span.label.label-default.label-pill.pull-right #{numPosts}
+          |     #{username}

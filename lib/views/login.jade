@@ -1,0 +1,38 @@
+extends ./layout.jade
+
+block vars
+  - var title = 'Login'
+  - var description = 'Log into your account!'
+  - var bodytag = 'login'
+  - var socialProviders = stormpathConfig.web.social
+  - var registerFields = stormpathConfig.web.register.form.fields
+
+block content
+
+  .spacing
+
+  form.login-form.form-horizontal(method='post', role='form',action=formActionUri)
+    input(name='_csrf', type='hidden', value=csrfToken)
+    h3(class='title') Login or 
+      a(href='#{stormpathConfig.web.register.uri}') Create Account
+    hr
+    
+    .spacing 
+    
+    .form-group
+      label.col-lg-2.control-label(class='#{cls}') Username or Email
+      .col-lg-10
+        input.form-control(autofocus='true', required=true, name='login', type='text', value=value)
+    .form-group
+      label.col-lg-2.control-label(class='#{cls}') Password
+      .col-lg-10
+        input.form-control(required=true, type='password', name='password')
+    .form-group
+      .col-lg-10.col-lg-offset-2
+        button.btn.btn-default(type='reset', name='reset') Cancel
+        button.btn.btn-primary(type='submit', name='submit') Login
+      .col-lg-10.col-lg-offset-2
+        if stormpathConfig.web.forgotPassword.enabled
+          a.forgot(style="float:right", href="#{stormpathConfig.web.forgotPassword.uri}") Forgot Password?
+          
+  .spacing

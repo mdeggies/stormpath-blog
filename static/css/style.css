@@ -1,0 +1,106 @@
+html, body {
+  width: 100%;
+}
+
+i {
+  padding: 5px 10px;
+  display: inline-block;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  -moz-box-shadow: 0px 0px 2px #888;
+  -webkit-box-shadow: 0px 0px 2px #888;
+  box-shadow: 0px 0px 2px #888;
+}
+
+.blog-content {
+  height: 175px;
+}
+
+.content {
+  white-space: pre-wrap;
+}
+
+/*Blog Tags*/
+
+.label {
+  margin-right: 1em;
+}
+
+.date {
+  padding-left: 13%;
+  padding-top: 2%;
+}
+
+.spacing {
+  padding-top: 25px;
+}
+
+.list-group-item {
+  font-size: 20px;
+}
+
+th {
+  background-color: #eb6864;
+  color: white;
+}
+
+.panel, form, .list-group-item {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.post-form, .bloggers-list, .registration-form {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  text-align: center;
+}
+
+#background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+#background h1 {
+  position: absolute;
+  top: 200px;
+  left: 0;
+  height: 400px;
+  width: 100%;
+  color: white;
+}
+
+.stretch {
+  height: 50%;
+}
+
+.home-panel-spacing {
+  padding-top: 30%;
+}
+
+.title {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+}
+
+button {
+  margin-right: .2em;
+}
+
+.err {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+}

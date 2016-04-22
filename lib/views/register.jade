@@ -1,0 +1,52 @@
+extends ./layout.jade
+
+block vars
+  - var title = 'Register'
+  - var description = 'Create a new account.'
+  - var bodytag = 'register'
+
+block content
+
+  .spacing
+
+  //- form.registration-form.form-horizontal.sp-form(method='post', role='form')
+  //-   h3(class='title') Register now to start posting!
+  //-     hr
+  //-   .spacing 
+  //-   each field in formModel.fields
+  //-     .form-group(class='form-group group-#{field.name}')
+  //-       label.col-lg-2.control-label #{field.label}
+  //-       .col-lg-10
+  //-          input.form-control(placeholder=field.placeholder, name=field.name, required=field.required, type=field.type)
+  //-   .form-group
+  //-     .col-lg-10.col-lg-offset-2
+  //-       button.btn.btn-default(type='reset', name='reset') Cancel
+  //-       button.btn.btn-primary(type='submit', name='submit') Register
+  //-   .col-lg-10.col-lg-offset-2
+  //-     a.to-login(style="float:right", href=stormpathConfig.web.login.uri) Back to Log In
+
+  form.registration-form.form-horizontal.sp-form(method='post', role='form')
+    h3(class='title') Register now to start posting!
+      hr
+    .spacing 
+    if errors
+      .alert.alert-danger
+        each error in errors
+          p #{error.message}
+      .spacing
+    each field in formModel.fields
+      div(form-group='true', class='form-group group-#{field.name}')
+        label.col-sm-4 #{field.label}
+        .col-sm-8
+          - var value = form ? form[field.name] : '';
+          input.form-control(placeholder=field.placeholder, name=field.name, value=value, required=field.required, type=field.type)
+    .form-group
+      .col-lg-10.col-lg-offset-2
+        button.btn.btn-default(type='reset', name='reset') Cancel
+        button.btn.btn-primary.btn-register(type='submit') Register
+      .col-lg-10.col-lg-offset-2
+        a.to-login(style="float:right", href=stormpathConfig.web.login.uri) Back to Login
+    
+  .spacing
+  .spacing
+  .spacing

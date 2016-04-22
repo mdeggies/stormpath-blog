@@ -2,6 +2,13 @@
 
 Created using the Express-Stormpath Example Project at https://github.com/stormpath/express-stormpath-sample-project.git
 
+## Resources
+
+Random Color Generator:
+https://github.com/davidmerfield/randomColor/blob/master/randomColor.js
+
+
+
 
 3. Export your Stormpath API Key ID / Secret and Application HREF Environment Variables:
 

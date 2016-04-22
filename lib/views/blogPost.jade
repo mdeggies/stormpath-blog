@@ -1,0 +1,36 @@
+extends ./layout.jade
+
+block vars
+  - var title = 'Post'
+
+block content
+
+  .spacing
+
+  if username
+    h3(class='title') Blog Post by 
+      a(href='/bloggers/'+username) #{username}
+      hr
+
+  if blogPost
+    - var post = blogPost
+    .panel
+      .panel-heading
+        .text-center
+          .row
+            .col-sm-9
+              h2.pull-left #{post.title}
+            .col-sm-3.date
+              h4.pull-left
+                small
+                  em
+                    | #{post.date}
+      .panel-body.content
+        | #{post.content}
+      .panel-footer
+        //- | #{post.tags}
+        - for (var i=0; i<post.tags.length; i++)
+          span.label.label-default #{post.tags[i]}
+          
+  else
+    h2 Looks like #{username} deleted this blog post...

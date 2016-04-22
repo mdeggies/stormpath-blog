@@ -6,34 +6,41 @@ block vars
 block content
 
   if user
-    h2.text-center Check out the latest posts, #{user.givenName}!
-
+    div#background
+      img(src='http://i.imgur.com/q5QcuN7.jpg' class='stretch')
+      h1(class='title') Welcome to Stormpath's Technical Blog, #{user.givenName}!
   else
-    h2.text-center Welcome! Check out the latest posts
+    div#background
+      img(src='http://i.imgur.com/q5QcuN7.jpg' class='stretch')
+      h1(class='title') Welcome to Stormpath's Technical Blog!
     
-  hr
+  .home-panel-spacing
+
+  if blogPosts != '{}'
   
-  div.jumbotron
-    img(src='http://i.imgur.com/OvuDSCN.jpg', width='500px')
-    Check out the best technical blog 
-  
-  if blogPosts
+    h3(class='title') View All Blog Posts
+      hr
+      
     - var posts = JSON.parse(blogPosts)
     each post in posts
       .panel
-        .panel-heading
+       .panel-heading
           .text-center
             .row
               .col-sm-9
-                h3.pull-left #{post.title}
-              .col-sm-3
+                h3.pull-left #{post.title} | #{post.author}
+              .col-sm-3.date
                 h4.pull-left
                   small
                     em
                       | #{post.date}
-        .panel-body
-          | #{post.content}...
-          a(href='#') Read more
+        .panel-body.blog-content
+          | #{post.content}
         .panel-footer
           - for (var i=0; i<post.tags.length; i++)
             span.label.label-default #{post.tags[i]}
+  else
+    h3(class='err') Sorry, there's no blog posts to show. Please check back later.
+            
+  .spacing
+  
