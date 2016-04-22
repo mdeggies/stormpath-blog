@@ -8,16 +8,14 @@ block content
   .spacing
 
   h3(class='title') View all Bloggers
-    a(href='/bloggers/'+username) #{username}
+    a(href='/bloggers/')
     hr
     
   .spacing
   
-  if usersData
-    ul.list-group.bloggers-list
-    each numPosts, username in usersData
-      - var user = username
-      a(href='/bloggers/'+username)
-        li.list-group-item
-          span.label.label-default.label-pill.pull-right #{numPosts}
-          |     #{username}
+  ul.list-group.bloggers-list
+  each user in userData
+    a(href='/bloggers/'+user.username)
+      li.list-group-item
+        span.label.label-default.label-pill.pull-right #{user.numPosts}
+        |  #{user.username}

@@ -12,15 +12,15 @@ block content
       a(href='/bloggers/'+username) #{username}
       hr
     
-  if blogPosts 
-    - var posts = JSON.parse(blogPosts)
-    each post in posts
+  if blogPosts && blogPosts.length > 0
+    each post, index in blogPosts
       .panel
         .panel-heading
           .text-center
             .row
               .col-sm-9
-                h3.pull-left #{post.title}
+                a(href='/bloggers/'+username+'/'+index)
+                  h3.pull-left #{post.title}
               .col-sm-3.date
                 h4.pull-left
                   small
@@ -31,5 +31,3 @@ block content
         .panel-footer
           - for (var i=0; i<post.tags.length; i++)
             span.label.label-default #{post.tags[i]}
-  else
-    h2 Looks like #{username} hasn't created any posts yet...

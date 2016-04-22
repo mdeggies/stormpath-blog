@@ -15,30 +15,39 @@ block content
       h1(class='title') Welcome to Stormpath's Technical Blog!
     
   .home-panel-spacing
-
-  if blogPosts != '{}'
   
-    h3(class='title') View All Blog Posts
-      hr
-      
-    - var posts = JSON.parse(blogPosts)
-    each post in posts
-      .panel
-       .panel-heading
-          .text-center
-            .row
-              .col-sm-9
-                h3.pull-left #{post.title} | #{post.author}
-              .col-sm-3.date
-                h4.pull-left
-                  small
-                    em
-                      | #{post.date}
-        .panel-body.blog-content
-          | #{post.content}
-        .panel-footer
-          - for (var i=0; i<post.tags.length; i++)
-            span.label.label-default #{post.tags[i]}
+  if (typeof(blogPosts) !== 'undefined')
+    if blogPosts !== '{}'
+  
+      h3(class='title') View All Blog Posts
+        hr
+  
+      each post, index in blogPosts
+        - var author = post.username
+        .panel
+         .panel-heading
+            .text-center
+              .row
+                .col-sm-9
+                  a(href='/bloggers/'+author+'/'+index)
+                    h3.pull-left #{post.title}
+                .col-sm-3.date
+                  h4.pull-left
+                    small
+                      em
+                        | #{post.date}
+          .panel-body.blog-content
+            | #{post.content}
+          .panel-footer
+              .row
+                .col-sm-3
+                  h5.pull-left By #{post.name}
+                .col-sm-9
+                  h4.pull-right
+                    - for (var i=0; i<post.tags.length; i++)
+                      span.label.label-default #{post.tags[i]}
+    else
+      h3(class='err') Sorry, there's no blog posts to show. Please check back later.
   else
     h3(class='err') Sorry, there's no blog posts to show. Please check back later.
             
