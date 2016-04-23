@@ -44,6 +44,8 @@ block content
                   h5.pull-left By #{post.name}
                 .col-sm-9
                   h4.pull-right
+                  if (typeof(post.tags) !== 'undefined')
+                    if post.tags !== '[]'
                     - for (var i=0; i<post.tags.length; i++)
                       span.label.label-default #{post.tags[i]}
     else

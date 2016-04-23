@@ -4,6 +4,7 @@ block vars
   - var title = 'Profile'
 
 block content
+
   script(src="/static/js/blogActions.js" type='text/javascript')
 
   - var name = user.fullName || user.username
@@ -55,5 +56,4 @@ block content
               a(href='/bloggers/'+user.username+'/'+index) #{post.title}
             td #{post.date}
             
-        
   .spacing
