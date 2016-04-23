@@ -121,7 +121,7 @@ app.get('/bloggers/:username', stormpath.loginRequired, function(req, res, next)
 });
 
 // Display a single blog post from a user
-app.get('/bloggers/:username/:id', stormpath.loginRequired, function(req, res, next) {
+app.get('/bloggers/:username/:id', function(req, res, next) {
   var username = req.params.username;
   var id = parseInt(req.params.id);
 
