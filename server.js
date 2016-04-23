@@ -8,7 +8,7 @@ var routes = require('./lib/routes');
 
 var app = express();
 
-app.set('trust proxy',true);
+app.set('trust proxy', true);
 app.set('view engine', 'jade');
 app.set('views', './lib/views');
 

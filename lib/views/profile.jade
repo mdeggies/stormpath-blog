@@ -4,6 +4,7 @@ block vars
   - var title = 'Profile'
 
 block content
+  script(src="/static/js/blogActions.js" type='text/javascript')
 
   - var name = user.fullName || user.username
   
@@ -38,7 +39,7 @@ block content
       
     .spacing
     
-    table.table.table-striped.table-hover
+    table.table.table-striped.table-hover#table
       thead
         tr
           th
@@ -49,9 +50,10 @@ block content
         each post, index in blogPosts
           tr
             td 
-              input(type="checkbox", name="agree")
+              input(type="checkbox", name="agree" onClick="deletePost(#{index})")
             td 
               a(href='/bloggers/'+user.username+'/'+index) #{post.title}
             td #{post.date}
+            
         
   .spacing
