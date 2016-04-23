@@ -1,7 +1,7 @@
 {
-  "name": "stormpath-express-profile-example",
+  "name": "stormpath-blog",
   "version": "1.0.0",
-  "description": "A simple Express.js web application to demonstrate core Stormpath functionality.",
+  "description": "A simple Stormpath blogging platform using Express-Stormpath",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -11,22 +11,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stormpath/stormpath-express-profile-example.git"
+    "url": "https://github.com/mdeggies/stormpath-blog"
   },
   "keywords": [
     "stormpath",
     "express",
-    "example",
-    "sample",
     "customdata",
     "express-stormpath",
     "web app"
   ],
-  "author": "Stormpath, Inc.",
-  "license": "Apache",
-  "bugs": {
-    "url": "https://github.com/stormpath/stormpath-express-profile-example/issues"
-  },
+  "author": "Michele Degges",
   "homepage": "https://github.com/stormpath/stormpath-express-profile-example",
   "dependencies": {
     "body-parser": "^1.14.2",

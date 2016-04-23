@@ -115,7 +115,7 @@ app.get('/bloggers/:username', stormpath.getUser, function(req, res, next) {
     account.getCustomData(function(err, data) {
       if (err) return next(err);
 
-      return res.render('userPosts', { blogPosts: data.blogPosts, username: username });
+      return res.render('blogPosts', { blogPosts: data.blogPosts, username: username });
     });
   });
 });

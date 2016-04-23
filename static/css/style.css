@@ -89,7 +89,7 @@ th, td {
   padding-top: 30%;
 }
 
-.title {
+.title, .center {
   margin-left: 10%;
   margin-right: 10%;
   text-align: center;
