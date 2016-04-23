@@ -79,7 +79,7 @@ app.get('/', stormpath.getUser, function(req, res, next) {
 });
 
 // List all bloggers and their blog post count
-app.get('/bloggers', function(req, res, next) {
+app.get('/bloggers', stormpath.loginRequired, function(req, res, next) {
   var userData = [];
 
   app.get('stormpathApplication').getAccounts(function(err, accounts) {
@@ -105,7 +105,7 @@ app.get('/bloggers', function(req, res, next) {
 });
 
 // Display all of a user's blog posts
-app.get('/bloggers/:username', stormpath.getUser, function(req, res, next) {
+app.get('/bloggers/:username', stormpath.loginRequired, function(req, res, next) {
   var username = req.params.username;
 
   app.get('stormpathApplication').getAccounts({ username: username }, function(err, accounts) {
@@ -121,7 +121,7 @@ app.get('/bloggers/:username', stormpath.getUser, function(req, res, next) {
 });
 
 // Display a single blog post from a user
-app.get('/bloggers/:username/:id', function(req, res, next) {
+app.get('/bloggers/:username/:id', stormpath.loginRequired, function(req, res, next) {
   var username = req.params.username;
   var id = parseInt(req.params.id);
 

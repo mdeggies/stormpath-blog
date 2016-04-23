@@ -12,9 +12,9 @@ nav.navbar.navbar-default.navbar-static-top
       ul.nav.navbar-nav
         li(class='#{nav.Home}')
           a(href='/') Home
-        li(class='#{nav.Bloggers}')
-          a(href='/bloggers') Bloggers
         if user
+          li(class='#{nav.Bloggers}')
+            a(href='/bloggers') Bloggers
           li(class='#{nav.Profile}')
             a(href='/profile') Profile
       if user
