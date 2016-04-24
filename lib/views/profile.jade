@@ -12,7 +12,7 @@ block content
   .spacing
 
   form.post-form.form-horizontal(method='post')
-    h3(class='title') Let's get blogging, #{name}!
+    h2(class='title') Let's get blogging, #{name}!
     hr
     .spacing
     .form-group
@@ -35,7 +35,7 @@ block content
   if !blogPosts || blogPosts.length === 0
     h2(class='err') Looks like you don't have any posts! Create one above :)
   else
-    h3(class='title') My Posts
+    h2(class='title') My Posts
       hr
       
     .spacing

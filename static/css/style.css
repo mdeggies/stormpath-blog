@@ -106,11 +106,15 @@ button {
   text-align: center;
 }
 
-a:link {
-  color: inherit;
+a {
+  text-decoration: none !important;
+  color: #777777;
 }
 
-a:hover {
+a:hover, h3:hover {
   color: #eb6864 !important;
-  text-decoration: none !important;
+}
+
+h2 {
+  font-size: 28px;
 }
