@@ -1,8 +1,6 @@
-$(document).ready(init);
+'use strict';
 
-function init() {
-  console.log('in blogActions.js');
-}
+$(document).ready();
 
 function deletePost(index) {
   $.ajax({

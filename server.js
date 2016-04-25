@@ -44,6 +44,11 @@ app.use(stormpath.init(app, {
       view: path.join(__dirname, 'lib', 'views', 'login.jade'),
       uri: '/login',
       nextUri: '/profile'
+    },
+    forgotPassword: {
+      view: path.join(__dirname, 'lib', 'views', 'forgotPassword.jade'),
+      uri: '/forgotPassword',
+      nextUri: '/login'
     }
   }
 }));

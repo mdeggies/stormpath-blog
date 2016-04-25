@@ -95,6 +95,10 @@ th, td {
   text-align: center;
 }
 
+.right {
+  text-align: right;
+}
+
 button {
   margin-right: .2em;
 }
@@ -111,7 +115,7 @@ a {
   color: #777777;
 }
 
-a:hover, h3:hover {
+a:hover, h3:hover, h4:hover {
   color: #eb6864 !important;
 }
 

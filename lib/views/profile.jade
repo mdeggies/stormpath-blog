@@ -43,8 +43,8 @@ block content
     table.table.table-striped.table-hover#table
       thead
         tr
-          th
-            input(type="checkbox", name="agree")
+          th 
+            i.fa.fa-minus-square
           th Title
           th Date
       tbody
@@ -56,4 +56,9 @@ block content
               a(href='/bloggers/'+user.username+'/'+index) #{post.title}
             td #{post.date}
             
+  .spacing
+  
+  a(href='/bloggers/'+user.username+'/delete')
+    h4(class='center') Delete Account
+
   .spacing
