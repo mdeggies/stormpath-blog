@@ -28,7 +28,7 @@ block content
                       | #{post.date}
         .panel-body.content
           | #{post.content}
-        .panel-footer
+        .panel-footer.tags
           - for (var i=0; i<post.tags.length; i++)
             span.label.label-default #{post.tags[i]}
             

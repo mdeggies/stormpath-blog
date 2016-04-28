@@ -4,7 +4,9 @@ var express = require('express');
 var stormpath = require('express-stormpath');
 var path = require('path');
 
-var routes = require('./lib/routes');
+var home = require('./lib/routes/home');
+var bloggers = require('./lib/routes/bloggers');
+var admins = require('./lib/routes/admins');
 
 var app = express();
 
@@ -14,6 +16,8 @@ app.set('views', './lib/views');
 
 app.locals.siteName = 'Stormpath Blog';
 
+var appHref = 'https://api.stormpath.com/v1/applications/6ggTe0PpV6a5q2og6L6Asq';
+
 app.use('/static', express.static(__dirname + '/static'))
 app.use(stormpath.init(app, {
   expand: {
@@ -22,12 +26,35 @@ app.use(stormpath.init(app, {
   templateContext: {
     siteName: 'Stormpath Blog'
   },
+  postRegistrationHandler(account, req, res, next) {
+    // Set 'admin' field in each user's custom data
+    req.user.getGroups({ name: 'admins' }, function(err, groups) {
+      if (err) return next(err);
+
+      if (groups.items[0]) {
+        req.user.customData.admin = true;
+      }
+      else {
+        req.user.customData.admin = false;
+      }
+      req.user.customData.save(function(err) {
+        if (err) return next(err);
+      });
+    });
+    // Initialize blog posts array if it doesn't exist already
+    if (!Array.isArray(req.user.customData.blogPosts)) {
+      req.user.customData.blogPosts = [];
+      req.user.customData.save(function(err) {
+        if (err) return next(err);
+      });
+    } else {
+      next();
+    }
+  },
   web: {
     register: {
       view: path.join(__dirname, 'lib', 'views', 'register.jade'),
-      uri: '/register',
       autoLogin: true,
-      nextUri: '/profile',
       form: {
         fields: {
           username: {
@@ -41,107 +68,24 @@ app.use(stormpath.init(app, {
       }
     },
     login: {
-      view: path.join(__dirname, 'lib', 'views', 'login.jade'),
-      uri: '/login',
-      nextUri: '/profile'
+      view: path.join(__dirname, 'lib', 'views', 'login.jade')
+    },
+    changePassword: {
+      enabled: true,
+      view: path.join(__dirname, 'lib', 'views', 'changePassword.jade'),
+      autoLogin: true
     },
     forgotPassword: {
-      view: path.join(__dirname, 'lib', 'views', 'forgotPassword.jade'),
-      uri: '/forgotPassword',
-      nextUri: '/login'
+      view: path.join(__dirname, 'lib', 'views', 'forgotPassword.jade')
     }
   }
 }));
 
-app.use('/', routes);
+app.use('/', home);
+app.use('/bloggers', bloggers);
+app.use('/admins', admins);
 
 app.on('stormpath.ready', function() {
   console.log('Server ready...');
   app.listen(process.env.PORT || 3000);
-});
-
-// Display all blog posts
-app.get('/', stormpath.getUser, function(req, res, next) {
-  app.get('stormpathApplication').getAccounts(function(err, accounts) {
-    if (err) return next(err);
-
-    var blogPosts = [];
-
-    accounts.each(function(account, cb) {
-      account.getCustomData(function(err, data) {
-        if (err) return next(err);
-
-        if (data.blogPosts) {
-          Array.prototype.push.apply(blogPosts, data.blogPosts);
-        }
-
-        cb();
-      });
-    }, function() {
-      res.render('home', { blogPosts: blogPosts });
-    });
-  });
-});
-
-// List all bloggers and their blog post count
-app.get('/bloggers', stormpath.loginRequired, function(req, res, next) {
-  var userData = [];
-
-  app.get('stormpathApplication').getAccounts(function(err, accounts) {
-    if (err) return next(err);
-
-    accounts.each(function(account, cb) {
-      account.getCustomData(function(err, data) {
-        if (err) return next(err);
-
-        if (data.blogPosts && data.blogPosts.length > 0) {
-          userData.push({
-            username: account.username,
-            numPosts: data.blogPosts.length
-          });
-        }
-
-        cb();
-      });
-    }, function() {
-      return res.render('bloggers', { userData: userData });
-    });
-  });
-});
-
-// Display all of a user's blog posts
-app.get('/bloggers/:username', stormpath.loginRequired, function(req, res, next) {
-  var username = req.params.username;
-
-  app.get('stormpathApplication').getAccounts({ username: username }, function(err, accounts) {
-    if (err) return next(err);
-
-    var account = accounts.items[0];
-    account.getCustomData(function(err, data) {
-      if (err) return next(err);
-
-      return res.render('blogPosts', { blogPosts: data.blogPosts, username: username });
-    });
-  });
-});
-
-// Display a single blog post from a user
-app.get('/bloggers/:username/:id', stormpath.loginRequired, function(req, res, next) {
-  var username = req.params.username;
-  var id = parseInt(req.params.id);
-
-  app.get('stormpathApplication').getAccounts({ username: username }, function(err, accounts) {
-    if (err) return next(err);
-
-    var account = accounts.items[0];
-    account.getCustomData(function(err, data) {
-      if (err) return next(err);
-
-      if (data.blogPosts[id]) {
-        return res.render('blogPost', { blogPost: data.blogPosts[id], username: username });
-      }
-
-      return res.redirect('/bloggers');
-    });
-  });
 });

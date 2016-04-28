@@ -3,14 +3,7 @@ html, body {
 }
 
 i {
-  padding: 5px 10px;
-  display: inline-block;
-  -moz-border-radius: 100px;
-  -webkit-border-radius: 100px;
-  border-radius: 100px;
-  -moz-box-shadow: 0px 0px 2px #888;
-  -webkit-box-shadow: 0px 0px 2px #888;
-  box-shadow: 0px 0px 2px #888;
+  color: black;
 }
 
 .blog-content {
@@ -95,7 +88,7 @@ th, td {
   text-align: center;
 }
 
-.right {
+.right, .tags {
   text-align: right;
 }
 
@@ -108,6 +101,15 @@ button {
   margin-left: 10%;
   margin-right: 10%;
   text-align: center;
+}
+
+.err2 {
+  padding-top: 5%;
+  text-align: center;
+}
+
+.icon {
+  color: white;
 }
 
 a {

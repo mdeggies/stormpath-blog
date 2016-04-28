@@ -12,7 +12,7 @@ block content
     hr
     
   .spacing
-  
+    
   ul.list-group.bloggers-list
   each user in userData
     a(href='/bloggers/'+user.username)
@@ -21,3 +21,41 @@ block content
         |  #{user.username}
         
   .spacing
+  
+  if (admin)
+  
+    h2(class='title') Create a New Blogger
+      hr
+      
+    form.form-horizontal(method="post" action="/admins/createUser")
+      .form-group
+        label.col-lg-2.control-label(for='username') Username
+        .col-lg-10
+          input#username.form-control(type='text', name='username'. required=true)
+      .form-group
+        label.col-lg-2.control-label(for='firstName') First Name
+        .col-lg-10
+          input#lastName.form-control(type='text', name='firstName', required=true)
+      .form-group
+        label.col-lg-2.control-label(for='lastName') Last Name
+        .col-lg-10
+          input#lastName.form-control(type='text', name='lastName', required=true)
+      .form-group
+        label.col-lg-2.control-label(for='email') Email
+        .col-lg-10
+          input#email.form-control(type='email', name='email', required=true)
+      .form-group
+        label.col-lg-2.control-label(for='email') Admin Rights
+        .col-lg-10
+          label.radio-inline
+          input(type='radio', name='admin')
+          | True
+          label.radio-inline
+          input(type='radio', name='admin')
+          | False
+      .form-group
+        .col-lg-10.col-lg-offset-2
+          button.btn.btn-default(type='reset') Cancel
+          button.btn.btn-primary(type='submit') Create
+          
+    .spacing

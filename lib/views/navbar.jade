@@ -16,7 +16,7 @@ nav.navbar.navbar-default.navbar-static-top
           li(class='#{nav.Bloggers}')
             a(href='/bloggers') Bloggers
           li(class='#{nav.Profile}')
-            a(href='/profile') Profile
+            a(href='/bloggers/'+user.username+'/profile') Profile
       if user
         form(action='/logout', method='POST', id="logout_form")
           ul.nav.navbar-nav.navbar-right

@@ -10,15 +10,20 @@ block content
   - var name = user.fullName || user.username
   
   .spacing
-
-  form.post-form.form-horizontal(method='post')
+  
+  form.post-form.form-horizontal(method='post' action='/bloggers/'+user.username+'/profile')
     h2(class='title') Let's get blogging, #{name}!
     hr
     .spacing
     .form-group
       label.col-lg-2.control-label(for='Title') Title
       .col-lg-10
-        input#title.form-control(type='text', name='title', required=true, placeholder='Post Title', style='cursor: auto; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAAXNSR0IArs4c6QAAAbNJREFUWAntV8FqwkAQnaymUkpChB7tKSfxWCie/Yb+gbdeCqGf0YsQ+hU95QNyDoWCF/HkqdeiIaEUqyZ1ArvodrOHxanQOiCzO28y781skKwFW3scPV1/febP69XqarNeNTB2KGs07U3Ttt/Ozp3bh/u7V7muheQf6ftLUWyYDB5yz1ijuPAub2QRDDunJsdGkAO55KYYjl0OUu1VXOzQZ64Tr+IiPXedGI79bQHdbheCIAD0dUY6gV6vB67rAvo6IxVgWVbFy71KBKkAFaEc2xPQarXA931ot9tyHphiPwpJgSbfe54Hw+EQHMfZ/msVEEURjMfjCjbFeG2dFxPo9/sVOSYzxmAwGIjnTDFRQLMQAjQ5pJAQkCQJ5HlekeERxHEsiE0xUUCzEO9AmqYQhiF0Oh2Yz+ewWCzEY6aYKKBZCAGYs1wuYTabKdNNMWWxnaA4gp3Yry5JBZRlWTXDvaozUgGTyQSyLAP0dbb3DtQlmcan0yngT2ekE9ARc+z4AvC7nauh9iouhpcGamJeX8XF8MaClwaeROWRA7nk+tUnyzGvZrKg0/40gdME/t8EvgG0/NOS6v9NHQAAAABJRU5ErkJggg=="); background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; background-repeat: no-repeat;', autocomplete='off')
+        input#title.form-control(type='text', name='title', required=true)
+    - if (admin)
+      .form-group
+        label.col-lg-2.control-label(for='author') Author's Username
+        .col-lg-10
+          input#author.form-control(type='text', name='author')
     .form-group
       label.col-lg-2.control-label(for='content') Content
       .col-lg-10
@@ -30,12 +35,12 @@ block content
     .form-group
       .col-lg-10.col-lg-offset-2
         button.btn.btn-default(type='reset', name='reset') Cancel
-        button.btn.btn-primary(type='submit', name='submit') Save
+        button.btn.btn-primary(type='submit', name='submit') Post
      
   if !blogPosts || blogPosts.length === 0
-    h2(class='err') Looks like you don't have any posts! Create one above :)
+    h2(class='err2') Looks like you don't have any posts! Create one above :)
   else
-    h2(class='title') My Posts
+    h2(class='err2') My Posts
       hr
       
     .spacing
@@ -44,21 +49,21 @@ block content
       thead
         tr
           th 
-            i.fa.fa-minus-square
+            i.fa.fa-minus-square(class='icon')
           th Title
           th Date
       tbody
         each post, index in blogPosts
           tr
             td 
-              input(type="checkbox", name="agree" onClick="deletePost(#{index})")
+              input(type="checkbox", name="agree" onClick="deletePost('#{user.username}', #{index})")
             td 
-              a(href='/bloggers/'+user.username+'/'+index) #{post.title}
+              a(href='/bloggers/#{user.username}/#{index}') #{post.title}
             td #{post.date}
             
   .spacing
   
-  a(href='/bloggers/'+user.username+'/delete')
+  a(href='/bloggers/#{user.username}/delete/account')
     h4(class='center') Delete Account
 
   .spacing

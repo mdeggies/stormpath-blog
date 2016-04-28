@@ -18,15 +18,19 @@ block content
   .spacing
   
   if error
-    .alert.alert-danger.bad-login
+    .alert.alert-danger.bad-login(class='center')
       p #{error}
       
   if formErrors
-   .alert.alert-danger.bad-login
+   .alert.alert-danger.bad-login(class='center')
       each error in formErrors
         p #{error.error}
         
   .spacing 
+  
+  label Easy 1-click login:
+    if socialProviders.facebook && socialProviders.facebook.enabled
+      include facebookLogin.jade
 
   form.login-form.form-horizontal(method='post', role='form',action=formActionUri)
     input(name='_csrf', type='hidden', value=csrfToken)

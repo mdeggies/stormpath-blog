@@ -28,6 +28,7 @@
     "express-stormpath": "^3.0.0",
     "jade": "^1.11.0",
     "path": "^0.12.7",
-    "randomcolor": "^0.4.4"
+    "randomcolor": "^0.4.4",
+    "randomstring": "^1.1.4"
   }
 }
