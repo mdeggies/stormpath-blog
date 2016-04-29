@@ -24,15 +24,16 @@ block content
   form.registration-form.form-horizontal.sp-form(method='post', role='form')
     each field in formModel.fields
       div(form-group='true', class='form-group group-#{field.name}')
-        label.col-sm-4 #{field.label}
-        .col-sm-8
+        label.col-xs-3.col-sm-3.col-md-3.col-lg-3 #{field.label}
+        .col-xs-9.col-sm-9.col-md-9.col-lg-9
           - var value = form ? form[field.name] : '';
-          input.form-control(placeholder=field.placeholder, name=field.name, value=value, required=field.required, type=field.type)
+          input.form-control(name=field.name, value=value, required=field.required, type=field.type)
     .form-group
-      .col-lg-10.col-lg-offset-2
+      .col-lg-12(class='text-right')
         button.btn.btn-default(type='reset', name='reset') Cancel
         button.btn.btn-primary.btn-register(type='submit') Register
-      .col-lg-10.col-lg-offset-2
-        a.to-login(style="float:right", href=stormpathConfig.web.login.uri) Back to Login
+      .col-lg-12
+        .half-spacing
+        a.to-login(style="float:left", href=stormpathConfig.web.login.uri) Back to Login
     
   .spacing

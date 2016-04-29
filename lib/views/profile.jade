@@ -11,10 +11,11 @@ block content
   
   .spacing
   
-  form.post-form.form-horizontal(method='post' action='/bloggers/'+user.username+'/profile')
-    h2(class='title') Let's get blogging, #{name}!
+  h2(class='title') Let's get blogging, #{name}!
     hr
-    .spacing
+  .spacing
+  
+  form.post-form.form-horizontal(method='post' action='/bloggers/'+user.username+'/profile')
     .form-group
       label.col-lg-2.control-label(for='Title') Title
       .col-lg-10
@@ -36,11 +37,14 @@ block content
       .col-lg-10.col-lg-offset-2
         button.btn.btn-default(type='reset', name='reset') Cancel
         button.btn.btn-primary(type='submit', name='submit') Post
+        
+  .spacing
      
   if !blogPosts || blogPosts.length === 0
     h2(class='err2') Looks like you don't have any posts! Create one above :)
+    .spacing
   else
-    h2(class='err2') My Posts
+    h2(class='title') My Posts
       hr
       
     .spacing
@@ -63,7 +67,16 @@ block content
             
   .spacing
   
-  a(href='/bloggers/#{user.username}/delete/account')
-    h4(class='center') Delete Account
+  h2(class='title') Delete Account
+    hr
+    
+  .row(class='center-me')
+  
+    h4 Warning! Only click the button below if you're absolutely sure you want to delete your account. This action CANNOT be undone. 
+    
+    .spacing 
+    
+    a(class='btn btn-default', href='/bloggers/#{user.username}/delete/account')
+      h4 Delete Account
 
   .spacing

@@ -13,7 +13,7 @@ block content
   
   h2(class='title') Login or 
     a(href='#{stormpathConfig.web.register.uri}') Create Account
-  hr
+    hr
   
   .spacing
   
@@ -28,27 +28,34 @@ block content
         
   .spacing 
   
-  label Easy 1-click login:
-    if socialProviders.facebook && socialProviders.facebook.enabled
-      include facebookLogin.jade
-
-  form.login-form.form-horizontal(method='post', role='form',action=formActionUri)
-    input(name='_csrf', type='hidden', value=csrfToken)
+  .container
+    .row
+      .col-xs-12.col-sm-12.col-md-8.col-lg-8
+        form.login-form.form-horizontal(method='post', role='form', action=formActionUri)
+          input(name='_csrf', type='hidden', value=csrfToken)
+          .form-group
+            label(class='#{cls}') Username or Email
+            .col-lg-12
+              input.form-control(autofocus='true', required=true, name='login', type='text', value=value)
+          .form-group
+            label(class='#{cls}') Password
+            .col-lg-12
+              input.form-control(required=true, type='password', name='password')
+          .form-group
+            .col-lg-12(class='text-right')
+              button.btn.btn-default(type='reset', name='reset') Cancel
+              button.btn.btn-primary(type='submit', name='submit') Login
+            .col-lg-12(class='text-right')
+              if stormpathConfig.web.forgotPassword.enabled
+                .half-spacing
+                a.forgot(style="float:left", href="#{stormpathConfig.web.forgotPassword.uri}") Forgot Password?
+      .col-xs-12.col-sm-12.col-md-4.col-lg-4.stuff
+        label Easy 1-click login
+        .spacing
+          if socialProviders.facebook && socialProviders.facebook.enabled
+            include facebookLogin.jade
+          .spacing
+          if socialProviders.google && socialProviders.google.enabled
+            include googleLogin.jade
     
-    .form-group
-      label.col-lg-2.control-label(class='#{cls}') Username or Email
-      .col-lg-10
-        input.form-control(autofocus='true', required=true, name='login', type='text', value=value)
-    .form-group
-      label.col-lg-2.control-label(class='#{cls}') Password
-      .col-lg-10
-        input.form-control(required=true, type='password', name='password')
-    .form-group
-      .col-lg-10.col-lg-offset-2
-        button.btn.btn-default(type='reset', name='reset') Cancel
-        button.btn.btn-primary(type='submit', name='submit') Login
-      .col-lg-10.col-lg-offset-2
-        if stormpathConfig.web.forgotPassword.enabled
-          a.forgot(style="float:right", href="#{stormpathConfig.web.forgotPassword.uri}") Forgot Password?
-          
   .spacing

@@ -16,8 +16,6 @@ app.set('views', './lib/views');
 
 app.locals.siteName = 'Stormpath Blog';
 
-var appHref = 'https://api.stormpath.com/v1/applications/6ggTe0PpV6a5q2og6L6Asq';
-
 app.use('/static', express.static(__dirname + '/static'))
 app.use(stormpath.init(app, {
   expand: {
@@ -40,6 +38,7 @@ app.use(stormpath.init(app, {
       req.user.customData.save(function(err) {
         if (err) return next(err);
       });
+      return next();
     });
     // Initialize blog posts array if it doesn't exist already
     if (!Array.isArray(req.user.customData.blogPosts)) {
@@ -48,7 +47,7 @@ app.use(stormpath.init(app, {
         if (err) return next(err);
       });
     } else {
-      next();
+      return next();
     }
   },
   web: {

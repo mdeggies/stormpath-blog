@@ -26,27 +26,29 @@ block content
   
     h2(class='title') Create a New Blogger
       hr
+    
+    .spacing
       
-    form.form-horizontal(method="post" action="/admins/createUser")
+    form.form-horizontal.create-blogger(method="post" action="/admins/createUser")
       .form-group
-        label.col-lg-2.control-label(for='username') Username
-        .col-lg-10
+        label.col-xs-3.col-sm-3.col-md-3.col-lg-3(for='username') Username
+        .col-lg-9
           input#username.form-control(type='text', name='username'. required=true)
       .form-group
-        label.col-lg-2.control-label(for='firstName') First Name
-        .col-lg-10
+        label.col-xs-3.col-sm-3.col-md-3.col-lg-3(for='firstName') First Name
+        .col-lg-9
           input#lastName.form-control(type='text', name='firstName', required=true)
       .form-group
-        label.col-lg-2.control-label(for='lastName') Last Name
-        .col-lg-10
+        label.col-xs-3.col-sm-3.col-md-3.col-lg-3(for='lastName') Last Name
+        .col-lg-9
           input#lastName.form-control(type='text', name='lastName', required=true)
       .form-group
-        label.col-lg-2.control-label(for='email') Email
-        .col-lg-10
+        label.col-xs-3.col-sm-3.col-md-3.col-lg-3(for='email') Email
+        .col-lg-9
           input#email.form-control(type='email', name='email', required=true)
       .form-group
-        label.col-lg-2.control-label(for='email') Admin Rights
-        .col-lg-10
+        label.col-xs-6.col-sm-6.col-md-6.col-lg-6(for='adminRights') Admin Rights
+        .col-xs-6.col-sm-6.col-md-6.col-lg-6.radio-inputs
           label.radio-inline
           input(type='radio', name='admin')
           | True
@@ -54,7 +56,7 @@ block content
           input(type='radio', name='admin')
           | False
       .form-group
-        .col-lg-10.col-lg-offset-2
+        .col-lg-12(class='text-right')
           button.btn.btn-default(type='reset') Cancel
           button.btn.btn-primary(type='submit') Create
           

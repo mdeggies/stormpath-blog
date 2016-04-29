@@ -14,6 +14,10 @@ i {
   white-space: pre-wrap;
 }
 
+.btns {
+  text-align: right;
+}
+
 /*Blog Tags*/
 
 .label {
@@ -25,8 +29,12 @@ i {
   padding-top: 2%;
 }
 
+.half-spacing {
+  padding-top: 1%;
+}
+
 .spacing {
-  padding-top: 25px;
+  padding-top: 3%;
 }
 
 .list-group-item {
@@ -38,22 +46,38 @@ th {
   color: white;
 }
 
-.panel, form, .list-group-item {
+.panel {
   margin-left: 10%;
   margin-right: 10%;
 }
 
-.post-form, .bloggers-list, .registration-form {
-  margin-left: 15%;
+.login-form {
+  margin-left: 10%;
   margin-right: 15%;
+}
+
+.list-group-item, .post-form, .bloggers-list, .registration-form, .create-blogger {
+  margin-left: 18%;
+  margin-right: 18%;
+}
+
+.center {
+  text-align: center;
+}
+
+.center-me {
+  text-align: center;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 table {
   margin-left: auto;
   margin-right: auto;
+  width: 75% !important;
 }
 
-th, td {
+td, th {
   text-align: center;
 }
 
@@ -75,18 +99,28 @@ th, td {
 }
 
 .stretch {
-  height: 50%;
+  height: 56%;
+  text-align: center;
 }
 
 .home-panel-spacing {
-  padding-top: 30%;
+  padding-top: 32%;
 }
 
-.title, .center {
+.main-title {
+  color: white;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+  text-shadow: 0 0 2px black;
+}
+
+.title {
   margin-left: 10%;
   margin-right: 10%;
   text-align: center;
 }
+
 
 .right, .tags {
   text-align: right;
@@ -112,6 +146,10 @@ button {
   color: white;
 }
 
+.radio-inputs {
+  text-align: left;
+}
+
 a {
   text-decoration: none !important;
   color: #777777;
@@ -123,4 +161,8 @@ a:hover, h3:hover, h4:hover {
 
 h2 {
   font-size: 28px;
+}
+
+.btn-social {
+  width: 80% !important;
 }
